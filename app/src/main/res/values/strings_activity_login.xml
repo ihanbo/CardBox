@@ -1,0 +1,16 @@
+<resources>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- 登录Fragment -->
+    <string name="prompt_email">账号</string>
+    <string name="prompt_password">密码</string>
+    <string name="action_sign_in">登录</string>
+    <string name="action_sign_up">注册</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="plus_sign_out">Switch Google+ account</string>
+    <string name="plus_disconnect">Disconnect from Google+</string>
+    <string name="error_invalid_email">账号格式不正确</string>
+    <string name="error_invalid_password">密码太短了</string>
+    <string name="error_incorrect_password">密码不正确</string>
+    <string name="error_field_required">不能为空</string>
+</resources>

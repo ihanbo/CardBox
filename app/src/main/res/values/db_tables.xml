@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="card_box" >
+        <item >com.hans.cardbox.model.Card</item>
+        <item >com.hans.cardbox.model.KeyPass</item>
+    </array>
+
+</resources>
