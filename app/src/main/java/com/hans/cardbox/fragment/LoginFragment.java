@@ -26,6 +26,7 @@ import com.hans.cardbox.base.BaseFragment;
 import com.hans.cardbox.iinterface.BmobFindListener;
 import com.hans.cardbox.tools.MD5;
 import com.hans.cardbox.tools.UriTools;
+import com.hans.cardbox.tools.UserUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -153,15 +154,16 @@ public class LoginFragment extends BaseFragment implements LoaderManager.LoaderC
 
 
     private void login(String key, String password){
-        String token = MD5.getMD5ofStr(key+password);
         BmobQuery<Account> query = new BmobQuery<Account>();
         query.addWhereEqualTo("key", key);
-        query.addWhereEqualTo("token", token);
+        query.addWhereEqualTo("password", password);
         query.findObjects(getActivity(), new BmobFindListener<Account>(this) {
+
             @Override
-            public void onSuccessed(List<Account> list) {
+            public void onSucced(List<Account> list) {
                 if(list!=null&&list.size()>0){
                     toast("登陆成功");
+                    UserUtils.saveAccount(list.get(0));
                     notifyActivitySucc();
                 }else{
                     mEmailView.setError("账号或密码错误");
@@ -169,13 +171,15 @@ public class LoginFragment extends BaseFragment implements LoaderManager.LoaderC
                     toast("登陆失败");
                 }
             }
+
             @Override
-            public void onFailed(String s) {
+            public void onFailed(int code, String msg) {
                 showProgress(false);
-                mEmailView.setError(s);
+                mEmailView.setError(msg);
                 mEmailView.requestFocus();
-                toast("登陆失败："+s);
+                toast("登陆失败："+msg+code);
             }
+
         });
     }
 

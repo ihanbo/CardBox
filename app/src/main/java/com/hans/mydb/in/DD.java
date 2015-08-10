@@ -40,7 +40,14 @@ public class DD {
 	public static Cursor rqwQuery(String sql, String[] selectionArgs){
 		return Centre.rqwQuery(sql, selectionArgs);
 	}
-	
+
+	public static long replace(Object entity){
+		return 	Centre.replace(entity);
+	}
+
+	public static void replace(List<?> data){
+		Centre.replace(data);
+	}
 	
 	public static void replaceOrPopup(List<?> data,boolean replace){
 		Centre.replaceOrPopup(data, replace);

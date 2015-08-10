@@ -15,16 +15,14 @@ public class Account extends BmobObject {
      */
     public String authKey;
 
-    public String token;
     public String primaryKey;
 
-    public Account(String key, String password, String name, String mobile, String authKey, String token, String primaryKey) {
+    public Account(String key, String password, String name, String mobile, String authKey,String primaryKey) {
         this.key = key;
         this.password = password;
         this.name = name;
         this.mobile = mobile;
         this.authKey = authKey;
-        this.token = token;
         this.primaryKey = primaryKey;
     }
 
@@ -46,15 +44,6 @@ public class Account extends BmobObject {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     public String getName() {
         return name;
     }

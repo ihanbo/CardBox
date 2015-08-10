@@ -13,27 +13,28 @@ import cn.bmob.v3.listener.FindListener;
  * 创建时间：2015/8/8 17:43
  * 备注：Bmob查找回调
  */
-public abstract class BmobFindListener<T> extends BombListener implements FindListener<T> {
+public abstract class BmobFindListener<T> extends FindListener<T> {
+    public CallbackAvailableListener mListener;
 
 
     public BmobFindListener(CallbackAvailableListener mListener) {
-        super(mListener);
+        this.mListener = mListener;
     }
 
-    public abstract void onSuccessed(List<T> list);
-    public abstract void onFailed(String s);
+    public abstract void onSucced(List<T> list);
+    public abstract void onFailed(int code,String msg);
     @Override
     public void onSuccess(List<T> list) {
             if(mListener.isAvaliable()){
-                onSuccessed(list);
+                onSucced(list);
             }else{
                 LG.wc("BmobFindListener Fragment不可用了");
             }
     }
     @Override
-    public void onError(String s) {
+    public void onError(int code,String msg){
         if(mListener.isAvaliable()){
-            onFailed(s);
+            onFailed(code, msg);
         }
     }
 }

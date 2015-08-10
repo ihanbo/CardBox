@@ -118,8 +118,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="请输入密码验证"
-        android:id="@+id/textView"
+        android:text="@string/prompt_auth"
+        android:id="@+id/text_prompt"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="41dp" />

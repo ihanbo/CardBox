@@ -1,8 +1,6 @@
 package com.hans.cardbox.iinterface;
 
-import java.util.List;
-
-import cn.bmob.v3.listener.InsertListener;
+import cn.bmob.v3.listener.SaveListener;
 
 /**
  * 项目名称：Bmob_Sample_fast
@@ -10,25 +8,26 @@ import cn.bmob.v3.listener.InsertListener;
  * 创建时间：2015/8/8 20:52
  * 备注：
  */
-public abstract  class BombInsertListener<T> extends BombListener implements InsertListener {
+public abstract  class BombInsertListener<T> extends SaveListener {
     private T t;
+    public CallbackAvailableListener mListener;
     public BombInsertListener(CallbackAvailableListener mListener,T t) {
-        super(mListener);
+        this.mListener = mListener;
         this.t = t;
     }
-    public abstract void onSuccessed(T t);
-    public abstract void onFailed(String s);
+    public abstract void onSucced(T t);
+    public abstract void onFailed(int code,String msg);
     @Override
     public void onSuccess() {
         if(mListener.isAvaliable()){
-            onSuccessed(t);
+            onSucced(t);
         }
     }
 
     @Override
-    public void onFailure(String s) {
+    public void onFailure(int code,String msg) {
         if(mListener.isAvaliable()){
-            onFailed(s);
+            onFailed(code,msg);
         }
     }
 }

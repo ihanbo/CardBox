@@ -80,6 +80,32 @@ public class Centre {
 		}
 		MyDBOpenHelper.insertAlot(info.getTableName(), cs, replace);
 	}
+
+	public static long replace(Object entity){
+		if (entity == null) {
+			return -1;
+		}
+		TableInfo info = getTableInfo(entity.getClass());
+		ContentValues  cv = Centre.getContentValuesByEntity(entity,true);
+		long i = MyDBOpenHelper.insertSingle(info.getTableName(), cv, true);
+		return i;
+	}
+
+	public static void replace(List<?> data){
+		if (data == null||data.isEmpty()) {
+			return ;
+		}
+		Object entity = data.get(0);
+		TableInfo info = getTableInfo(entity.getClass());
+		List<ContentValues> cs = new ArrayList<ContentValues>();
+		int size = data.size();
+		for (int i = 0; i < size; i++) {
+			Object obj = data.get(i);
+			ContentValues cv = getContentValuesByEntity(obj,true);
+			cs.add(cv);
+		}
+		MyDBOpenHelper.insertAlot(info.getTableName(), cs, true);
+	}
 	
 	public static long insertOrReplace(Object entity,boolean replace){
 		if (entity == null) {

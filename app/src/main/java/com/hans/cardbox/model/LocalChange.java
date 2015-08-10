@@ -10,7 +10,7 @@ import com.hans.mydb.annotation.H_TABLE;
  */
 @H_TABLE(name = "local_change")
 public class LocalChange {
-    public static final int TYPE_INSERT = 1;
+    public static final int TYPE_ADD = 1;
     public static final int TYPE_DELETE = 2;
     public static final int TYPE_UPDATE = 4;
 
@@ -19,6 +19,13 @@ public class LocalChange {
     public String pk;
     public int type;
 
+    public LocalChange(String tableName, String pk) {
+        this.tableName = tableName;
+        this.pk = pk;
+    }
+
+    public LocalChange() {
+    }
 
     public String getTableName() {
         return tableName;
@@ -42,5 +49,18 @@ public class LocalChange {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public LocalChange setTypeAdd(){
+        type = TYPE_ADD;
+        return this;
+    }
+    public LocalChange setTypeUpdate(){
+        type = TYPE_UPDATE;
+        return this;
+    }
+    public LocalChange setTypeDelete(){
+        type = TYPE_DELETE;
+        return this;
     }
 }

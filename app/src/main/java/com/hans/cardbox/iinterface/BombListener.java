@@ -6,11 +6,15 @@ package com.hans.cardbox.iinterface;
  * 创建时间：2015/8/8 20:52
  * 备注：
  */
-public class BombListener {
+public abstract  class BombListener {
     public CallbackAvailableListener mListener;
 
     public BombListener(CallbackAvailableListener mListener) {
         this.mListener = mListener;
     }
+
+    public abstract void onSucced();
+
+    public abstract void onFailed(int caode, String msg);
 
 }

@@ -22,6 +22,8 @@ import com.hans.cardbox.tools.MD5;
 import com.hans.cardbox.tools.UriTools;
 import com.hans.cardbox.tools.UserUtils;
 
+import cn.bmob.v3.listener.SaveListener;
+
 public class RegisterFragment extends BaseFragment {
 
 
@@ -99,12 +101,19 @@ public class RegisterFragment extends BaseFragment {
         String mobiles = mobile.getText().toString().trim();
         String email = mEmailView.getText().toString().trim();
         String password = mPasswordView.getText().toString().trim();
+        String authKey = mAuthKey.getText().toString().trim();
 
         boolean cancel = false;
         View focusView = null;
 
+
+        if (TextUtils.isEmpty(authKey) ||authKey.length()!=4) {
+            mAuthKey.setError("长度不对");
+            focusView = mAuthKey;
+            cancel = true;
+        }
         // Check for a valid password, if the user entered one.
-        if (!TextUtils.isEmpty(password) && !isPasswordValid(password)) {
+        if (TextUtils.isEmpty(password) ||!isPasswordValid(password)) {
             mPasswordView.setError(getString(R.string.error_invalid_password));
             focusView = mPasswordView;
             cancel = true;
@@ -124,9 +133,8 @@ public class RegisterFragment extends BaseFragment {
         if (cancel) {
             focusView.requestFocus();
         } else {
-            String token = MD5.getMD5ofStr(email + password);
-            String primaryKey = System.currentTimeMillis()+password;
-            Account account = new Account(email, password,names,mobiles,token, primaryKey);
+            String primaryKey = MD5.getMD5ofStr(email + password+System.currentTimeMillis());
+            Account account = new Account(email, password,names,mobiles,authKey, primaryKey);
             register(account);
         }
     }
@@ -142,9 +150,9 @@ public class RegisterFragment extends BaseFragment {
 
     private void register(Account account) {
         showProgress(true);
-        account.insertObject(mActivity, new BombInsertListener<Account>(this,account) {
+        account.save(mActivity, new BombInsertListener<Account>(this, account) {
             @Override
-            public void onSuccessed(Account account) {
+            public void onSucced(Account account) {
                 showProgress(false);
                 toast("注册成功");
                 UserUtils.saveAccount(account);
@@ -152,9 +160,9 @@ public class RegisterFragment extends BaseFragment {
             }
 
             @Override
-            public void onFailed(String s) {
+            public void  onFailed(int code,String msg){
                 showProgress(false);
-                toast("注册失败：" + s);
+                toast("注册失败：" + msg+code);
             }
         });
     }

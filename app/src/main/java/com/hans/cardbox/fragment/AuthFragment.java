@@ -1,14 +1,18 @@
 package com.hans.cardbox.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.hans.cardbox.R;
 import com.hans.cardbox.base.BaseFragment;
+import com.hans.cardbox.tools.UriTools;
+import com.hans.cardbox.tools.UserUtils;
 
 /**
  * 项目名称：Bmob_Sample_fast
@@ -18,6 +22,7 @@ import com.hans.cardbox.base.BaseFragment;
  */
 public class AuthFragment extends BaseFragment {
 
+    private TextView prompt;
     private LinearLayout passwordView;
     private Button b1;
     private Button b2;
@@ -53,6 +58,7 @@ public class AuthFragment extends BaseFragment {
         b9 = (Button) findViewById(R.id.b9);
         clear = (Button) findViewById(R.id.clear);
         delete = (Button) findViewById(R.id.delete);
+        prompt = (TextView) findViewById(R.id.text_prompt);
 
 
         b0.setOnClickListener(this);
@@ -78,7 +84,10 @@ public class AuthFragment extends BaseFragment {
     public void onClick(View v) {
         super.onClick(v);
         if(pass.length()==4){
-            if(v!=clear&&v!=delete){
+            if(v==clear||v==delete){
+                prompt.setText(R.string.prompt_auth);
+                prompt.setBackgroundColor(Color.TRANSPARENT);
+            }else{
                 return;
             }
         }
@@ -125,7 +134,11 @@ public class AuthFragment extends BaseFragment {
         if(pass.length()<4){
             return;
         }
-
-
+        if(pass.toString().equals(UserUtils.getCachedAccount().getAuthKey())){
+            mConector.onFragmentInteraction(UriTools.getUri(UriTools.HOST_USER_CENTER,UriTools.PATH_USER_NUM_AUTH));
+        }else{
+            prompt.setText("密码验证失败");
+            prompt.setBackgroundColor(Color.RED);
+        }
     }
 }
