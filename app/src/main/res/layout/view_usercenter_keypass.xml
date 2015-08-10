@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edit_key"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:minWidth="80dp"
+        android:hint="账户名称"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+
+    <ImageButton
+        android:id="@+id/btn_add_desc"
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edit_password"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"/>
+
+    <EditText
+        android:id="@+id/edit_password"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15dp"
+        android:hint="账户密码"
+        android:layout_toLeftOf="@id/btn_add_desc"
+        android:layout_toRightOf="@id/edit_key"/>
+
+    <EditText
+        android:id="@+id/edit_desc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:hint="备注..."
+        android:visibility="gone"
+        android:layout_below="@id/edit_key"
+        android:layout_marginTop="10dp"/>
+
+
+</merge>

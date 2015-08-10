@@ -4,29 +4,21 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.ActivityManager.RunningTaskInfo;
-import android.app.AlertDialog;
-import android.app.Dialog;
 import android.app.ProgressDialog;
-import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ResolveInfo;
-import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -34,10 +26,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
 import android.os.IBinder;
-import android.provider.Settings;
 import android.text.TextUtils;
-import android.text.format.Time;
-import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.TypedValue;
@@ -49,11 +38,6 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hans.cardbox.App;
 
@@ -72,23 +56,18 @@ import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ToolBox {
+public class TT {
 
     public final static String MNT = "/mnt";
 
@@ -96,7 +75,7 @@ public class ToolBox {
 
     public final static String CACHE = "cache/";
 
-    public final static String TAG = "ToolBox";
+    public final static String TAG = "TT";
 
     public final static String KEYLIST =
             "139E53F54A1DB2B0C850F728FD828456DABD1849420BC454F5F3CB147356EF369421899328DB3A48DE2A387C57E96949F7D76E2BBC2DFA8BB24764029AB80199";
@@ -730,7 +709,7 @@ public class ToolBox {
      */
     public static String getAssetsFile(Context context, String filename) {
         try {
-            return ToolBox.convertStreamToString(context.getResources().getAssets().open(filename));
+            return TT.convertStreamToString(context.getResources().getAssets().open(filename));
         } catch (IOException e) {
             e.printStackTrace();
             return "";

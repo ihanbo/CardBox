@@ -17,6 +17,19 @@ public class KeyPass extends BmobObject{
     public String desc;
     public String cardID;
 
+    public KeyPass() {
+    }
+
+    public KeyPass(String key, String pass) {
+        this.key = key;
+        this.pass = pass;
+    }
+
+    public KeyPass(String key, String pass, String desc) {
+        this.key = key;
+        this.pass = pass;
+        this.desc = desc;
+    }
 
     public String getKey() {
         return key;
@@ -48,5 +61,11 @@ public class KeyPass extends BmobObject{
 
     public void setCardID(String cardID) {
         this.cardID = cardID;
+    }
+
+
+    public KeyPass ccarID(String cardID){
+        this.cardID = cardID;
+        return this;
     }
 }

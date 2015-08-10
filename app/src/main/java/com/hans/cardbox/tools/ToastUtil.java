@@ -47,7 +47,7 @@ public class ToastUtil {
         }
     }
     private static void showMessage(final int msgID, boolean showLong) {
-        showMessage(ToolBox.getString(msgID),showLong);
+        showMessage(TT.getString(msgID),showLong);
     }
 
 
