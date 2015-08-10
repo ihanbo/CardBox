@@ -108,7 +108,7 @@
                 style="@style/fragment_auth_keyboard" />
             <Button
                 android:id="@+id/delete"
-                android:text="<"
+                android:text="Delete"
                 style="@style/fragment_auth_keyboard" />
         </LinearLayout>
 

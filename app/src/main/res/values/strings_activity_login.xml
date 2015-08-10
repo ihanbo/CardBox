@@ -4,6 +4,7 @@
     <!-- 登录Fragment -->
     <string name="prompt_email">账号</string>
     <string name="prompt_password">密码</string>
+    <string name="prompt_auth_key">4位验证码</string>
     <string name="action_sign_in">登录</string>
     <string name="action_sign_up">注册</string>
     <string name="action_sign_in_short">Sign in</string>

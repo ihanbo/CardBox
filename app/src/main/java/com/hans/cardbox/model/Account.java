@@ -7,19 +7,24 @@ public class Account extends BmobObject {
 
     public static final String P_KEY = "my_account";
     public String key;
-    public String token;
     public String password;
-
     public String name;
     public String mobile;
+    /**
+     * 4位验证密码
+     */
+    public String authKey;
+
+    public String token;
     public String primaryKey;
 
-    public Account(String key,  String password, String name, String mobile, String token,String primaryKey) {
+    public Account(String key, String password, String name, String mobile, String authKey, String token, String primaryKey) {
         this.key = key;
-        this.token = token;
         this.password = password;
         this.name = name;
         this.mobile = mobile;
+        this.authKey = authKey;
+        this.token = token;
         this.primaryKey = primaryKey;
     }
 
@@ -72,5 +77,13 @@ public class Account extends BmobObject {
 
     public void setPrimaryKey(String primaryKey) {
         this.primaryKey = primaryKey;
+    }
+
+    public String getAuthKey() {
+        return authKey;
+    }
+
+    public void setAuthKey(String authKey) {
+        this.authKey = authKey;
     }
 }

@@ -36,6 +36,7 @@ public class RegisterFragment extends BaseFragment {
     private EditText mobile;
     private EditText mEmailView;
     private EditText mPasswordView;
+    private EditText mAuthKey;
     private View mProgressView;
     private Button mEmailSignInButton;
 
@@ -55,6 +56,7 @@ public class RegisterFragment extends BaseFragment {
         name = (EditText) findViewById(R.id.name);
         mobile = (EditText) findViewById(R.id.mobile);
         mEmailView = (EditText) findViewById(R.id.email);
+        mAuthKey =(EditText)findViewById(R.id.auth_key);
 
         mPasswordView = (EditText) findViewById(R.id.password);
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
