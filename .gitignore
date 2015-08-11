@@ -48,3 +48,5 @@ testjava/
 
 
 app/build/
+app/libs/bmob_v3.0.8beta.jar
+gradle/wrapper/gradle-wrapper.jar
