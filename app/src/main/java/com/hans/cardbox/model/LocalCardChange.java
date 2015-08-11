@@ -6,41 +6,31 @@ import com.hans.mydb.annotation.H_TABLE;
  * 项目名称：Bmob_Sample_fast
  * 创建人：开发
  * 创建时间：2015/8/9 22:33
- * 备注：本地变动的缓存，同步的时候用
+ * 备注：本地Card变动的缓存，同步的时候用
  */
 @H_TABLE(name = "local_change")
-public class LocalChange {
+public class LocalCardChange {
     public static final int TYPE_ADD = 1;
     public static final int TYPE_DELETE = 2;
     public static final int TYPE_UPDATE = 4;
 
 
-    public String tableName;
-    public String pk;
+    public String carID;
     public int type;
 
-    public LocalChange(String tableName, String pk) {
-        this.tableName = tableName;
-        this.pk = pk;
+    public LocalCardChange(String carID) {
+        this.carID = carID;
     }
 
-    public LocalChange() {
+    public LocalCardChange() {
     }
 
-    public String getTableName() {
-        return tableName;
+    public String getCarID() {
+        return carID;
     }
 
-    public void setTableName(String tableName) {
-        this.tableName = tableName;
-    }
-
-    public String getPk() {
-        return pk;
-    }
-
-    public void setPk(String pk) {
-        this.pk = pk;
+    public void setCarID(String carID) {
+        this.carID = carID;
     }
 
     public int getType() {
@@ -51,15 +41,15 @@ public class LocalChange {
         this.type = type;
     }
 
-    public LocalChange setTypeAdd(){
+    public LocalCardChange setTypeAdd(){
         type = TYPE_ADD;
         return this;
     }
-    public LocalChange setTypeUpdate(){
+    public LocalCardChange setTypeUpdate(){
         type = TYPE_UPDATE;
         return this;
     }
-    public LocalChange setTypeDelete(){
+    public LocalCardChange setTypeDelete(){
         type = TYPE_DELETE;
         return this;
     }

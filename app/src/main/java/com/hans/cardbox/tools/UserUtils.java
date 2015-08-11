@@ -13,53 +13,53 @@ import com.hans.cardbox.model.Account;
 public class UserUtils {
     private static Account mAccount;
 
-    private static String getAccountString(){
-        String ujs = Prefs.getString(Account.P_KEY,null);
-        if(TextUtils.isEmpty(ujs)){
+    private static String getAccountString() {
+        String ujs = Prefs.getString(Account.P_KEY, null);
+        if (TextUtils.isEmpty(ujs)) {
             return null;
         }
         try {
-            return DESUtil.decrypt(ujs,getMasterKey());
+            return DESUtil.decrypt(ujs, getMasterKey());
         } catch (Exception e) {
             throw new RuntimeException("解密用户数据失败");
         }
     }
 
-    public static void logOut(){
+    public static void logOut() {
         Prefs.remove(Account.P_KEY);
         Prefs.remove("loghyfs");
-        Prefs.remove("auth_key");
         mAccount = null;
     }
 
-    public static Account getLocalAccount(){
+    public static Account getLocalAccount() {
         String ujs = getAccountString();
-        if(!TextUtils.isEmpty(ujs)){
-            return JsonTools.getObject(ujs,Account.class);
+        if (!TextUtils.isEmpty(ujs)) {
+            return JsonTools.getObject(ujs, Account.class);
         }
         return null;
     }
 
-    public static void saveAccount(Account account){
-        if(account==null||account.getKey()==null){
+    public static void saveAccount(Account account) {
+        if (account == null || account.getKey() == null) {
             return;
         }
         mAccount = account;
-        String ujs =  JsonTools.getJsonString(account);
+        String ujs = JsonTools.getJsonString(account);
         try {
-            String encrytStr = DESUtil.encrypt(ujs,getMasterKey());
+            String masterkey = generateMasterkey(account.getPrimaryKey());
+            String encrytStr = DESUtil.encrypt(ujs, masterkey);
             Prefs.putString(Account.P_KEY, encrytStr);
-            saveMasterKey(account.getPrimaryKey());
-            saveAuthKey(account.getAuthKey());
+
+            savePrimaryKey(account.getPrimaryKey());
         } catch (Exception e) {
-            throw new RuntimeException("加密用户数据失败");
+            throw new RuntimeException("加密用户数据失败", e);
         }
     }
 
-    public static Account getCachedAccount(){
-        if(mAccount==null){
-            synchronized (UserUtils.class){
-                if(mAccount==null){
+    public static Account getCachedAccount() {
+        if (mAccount == null) {
+            synchronized (UserUtils.class) {
+                if (mAccount == null) {
                     mAccount = getLocalAccount();
                 }
             }
@@ -67,39 +67,35 @@ public class UserUtils {
         return mAccount;
     }
 
-    public static boolean isLogin(){
-        return getCachedAccount()==null;
-    }
-
-
-    /**
-     * 加密的key
-     * @return
-     */
-    public static String getMasterKey(){
-        return Prefs.getString("loghyfs",null);
-    }
-    /**
-     * 加密的key
-     * @return
-     */
-    public static void saveMasterKey(String primaryKey){
-        Prefs.putString("loghyfs",primaryKey);
+    public static boolean isLogin() {
+        return getCachedAccount() == null;
     }
 
     /**
-     * auth的key
+     * 获取加密的key
      * @return
      */
-    public static String getAuthKey(){
-        return Prefs.getString("auth_key",null);
+    public static String getMasterKey() {
+        return generateMasterkey(getPrimaryKey());
     }
+
+
+
+    private static void savePrimaryKey(String primaryKey) {
+        Prefs.putString("loghyfs", primaryKey);
+    }
+
+    private static String getPrimaryKey() {
+        return Prefs.getString("loghyfs", null);
+    }
+
     /**
-     * auth的key
+     * 生成最终masterkey的方法
+     * @param primaryKey 用户的primaryKey
      * @return
      */
-    public static void saveAuthKey(String authKey){
-        Prefs.putString("auth_key",authKey);
+    private static String generateMasterkey(String primaryKey) {
+        return primaryKey + "2gfds493";
     }
 
 }

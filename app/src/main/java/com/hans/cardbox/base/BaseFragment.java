@@ -11,14 +11,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import com.hans.cardbox.iinterface.CallbackAvailableListener;
+import com.hans.cardbox.iinterface.MessageListener;
 import com.hans.cardbox.tools.LG;
 import com.hans.cardbox.tools.ToastUtil;
 
 
-public abstract class BaseFragment extends Fragment implements CallbackAvailableListener ,View.OnClickListener{
+public abstract class BaseFragment extends Fragment implements MessageListener,View.OnClickListener{
     protected Handler mHandler;
     protected String LOG_TAG;
     protected BaseActivity mActivity;
+    protected BaseFragment mSelf;
     protected OnFragmentInteractionListener mConector;
 
     public BaseFragment() {
@@ -28,6 +30,7 @@ public abstract class BaseFragment extends Fragment implements CallbackAvailable
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         LOG_TAG = this.getClass().getSimpleName();
+        mSelf = this;
     }
 
 
@@ -87,6 +90,11 @@ public abstract class BaseFragment extends Fragment implements CallbackAvailable
     @Override
     public boolean isAvaliable() {
         return isAdded();
+    }
+
+    @Override
+    public void notifyMsg(Uri uri){
+
     }
 
     public interface OnFragmentInteractionListener {

@@ -968,7 +968,7 @@ public class TT {
 
 
     /**
-     * 获取当前应用的meta-data
+     * 获取当前应用的meta-kps
      * @return 渠道ID
      * @author sudi@yiche.com
      */

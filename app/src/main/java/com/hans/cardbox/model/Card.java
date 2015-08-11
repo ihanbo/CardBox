@@ -20,11 +20,24 @@ public class Card extends BmobObject {
     @APK
     public String cardID;
     public String name;
-    public String icon;
-    public  int type;
-    @H_NotShoot
-    public  List<KeyPass> data;
     public String desc;
+    public String icon;
+    public int type;
+
+    @H_NotShoot
+    public List<QuickKey> quickKeys;
+    @H_NotShoot
+    public List<KeyPass> kps;
+
+
+    public String bmobID;
+
+
+    public Card(String cardID, String name, String desc) {
+        this.cardID = cardID;
+        this.name = name;
+        this.desc = desc;
+    }
 
     public String getCardID() {
         return cardID;
@@ -58,12 +71,12 @@ public class Card extends BmobObject {
         this.type = type;
     }
 
-    public List<KeyPass> getData() {
-        return data;
+    public List<KeyPass> getKps() {
+        return kps;
     }
 
-    public void setData(List<KeyPass> data) {
-        this.data = data;
+    public void setKps(List<KeyPass> kps) {
+        this.kps = kps;
     }
 
     public String getDesc() {
@@ -72,5 +85,40 @@ public class Card extends BmobObject {
 
     public void setDesc(String desc) {
         this.desc = desc;
+    }
+
+    public List<QuickKey> getQuickKeys() {
+        return quickKeys;
+    }
+
+    public void setQuickKeys(List<QuickKey> quickKeys) {
+        this.quickKeys = quickKeys;
+    }
+
+    public String getBmobID() {
+        return bmobID;
+    }
+
+    public void setBmobID(String bmobID) {
+        this.bmobID = bmobID;
+    }
+
+
+    /**
+     * 获取主键列名
+     * @return
+     */
+    public static String getPKColumn() {
+        return "cardID";
+    }
+
+    public Card kkps(List<KeyPass> kps) {
+        this.kps = kps;
+        return this;
+    }
+
+    public Card quicyKeys(List<QuickKey> quickKeys) {
+        this.quickKeys = quickKeys;
+        return this;
     }
 }

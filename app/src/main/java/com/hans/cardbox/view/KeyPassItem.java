@@ -35,9 +35,12 @@ public class KeyPassItem extends RelativeLayout implements View.OnClickListener 
     }
 
     private void init(Context context){
-        int padding = TT.dip2px(15);
+        int padding = 30;
+        if(!isInEditMode()){
+            padding = TT.dip2px(15);
+        }
         setPadding(padding,padding,padding,padding);
-        LayoutInflater.from(context).inflate(R.layout.view_usercenter_keypass, this, true);
+        TT.getLayoutInflater().inflate(R.layout.view_usercenter_keypass, this, true);
         findViews();
     }
 

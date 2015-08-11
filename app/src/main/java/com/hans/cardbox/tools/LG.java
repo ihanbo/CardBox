@@ -20,24 +20,30 @@ public class LG {
     }
     public static void e(String tag,String msg){
         if(debug){
-            Log.e(tag,msg);
+            Log.e(tag, msg);
         }
     }
     public static void w(String tag,String msg){
         if(debug){
-            Log.w(tag,msg);
+            Log.w(tag, msg);
         }
     }
     public static void d(String tag,String msg){
         if(debug){
-            Log.d(tag,msg);
+            Log.d(tag, msg);
         }
     }
 
 
     public static void wc(String msg){
         if(debug){
-            Log.w("ww",msg);
+            Log.w("ww", msg);
+        }
+    }
+
+    public static void hh(String msg){
+        if(debug){
+            Log.w("hh",msg);
         }
     }
 }
